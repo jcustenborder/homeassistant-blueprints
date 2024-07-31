@@ -32,4 +32,4 @@ action:
   - service: notify.notify
     data_template:
       message: |
-        {{trigger.entity_id }} Temperature is above {{ states('threshold') | default(0) }}.
+        {{trigger.entity_id }} Temperature is above {{ threshold | default(0) }}.
