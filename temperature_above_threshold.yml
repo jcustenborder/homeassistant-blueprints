@@ -25,4 +25,5 @@ trigger:
 action:
   - service: notify.notify
     data:
-      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above threshold." #{{ !input maximum_temperature | default(0) }}
+#      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature | default(0) }}."
+      message: "Temperature is above threshold."
