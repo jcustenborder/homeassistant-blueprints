@@ -19,7 +19,7 @@ blueprint:
             - domain: sensor
             - device_class: temperature
 variables:
-  maximum_temperature: !input maximum_temperature
+  threshold: !input maximum_temperature
 
 trigger:
   - platform: numeric_state
@@ -32,4 +32,4 @@ action:
   - service: notify.notify
     data_template:
       message: |
-        {{trigger.entity_id }} Temperature is above {{ states('maximum_temperature') | default(0) }}.
+        {{trigger.entity_id }} Temperature is above {{ states('threshold') | default(0) }}.
