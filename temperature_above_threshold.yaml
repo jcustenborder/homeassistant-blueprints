@@ -32,4 +32,4 @@ action:
   - service: notify.notify
     data_template:
       message: |
-        {{trigger.entity_id | device_attr('name') }} Temperature is above {{ states('maximum_temperature') | default(0) }}.
+        {{trigger.entity_id }} Temperature is above {{ states('maximum_temperature') | default(0) }}.
