@@ -1,0 +1,28 @@
+blueprint:
+  name: Temperature above threshold
+  description: Send a notification if the temperature is above x.
+  domain: automation
+  input:
+    maximum_temperature:
+      name: Maximum Temperature
+      description: asdf
+      selector:
+        number:
+          min: -150
+          max: 150
+    temperature_sensor:
+      name: Maximum Temperature
+      description: asdf
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+            - device_class: temperature
+trigger:
+  - platform: numeric_state
+    entity_id: !input temperature_sensor
+    above: !input maximum_temperature
+action:
+  - service: notify.notify
+    data:
+      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature }}"
