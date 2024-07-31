@@ -28,4 +28,5 @@ action:
       message: Garage Freezer Temperature is too high
   - service: notify.notify
     data_template:
-      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature | default(0) }}."
+      message: |
+        {{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature | default(0) }}.
