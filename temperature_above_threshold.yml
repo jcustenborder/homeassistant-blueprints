@@ -25,5 +25,8 @@ trigger:
 action:
   - service: notify.notify
     data:
-#      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature | default(0) }}."
-      message: "Temperature is above threshold."
+      message: Garage Freezer Temperature is too high
+#  - service: notify.notify
+#    data:
+##      message: "{{trigger.entity_id | device_attr('name') }} Temperature is above {{ !input maximum_temperature | default(0) }}."
+#      message: "Temperature is above threshold."
