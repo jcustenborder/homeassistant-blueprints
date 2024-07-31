@@ -18,6 +18,7 @@ blueprint:
           filter:
             - domain: sensor
             - device_class: temperature
+
 variables:
   threshold: !input maximum_temperature
 
@@ -25,11 +26,9 @@ trigger:
   - platform: numeric_state
     entity_id: !input temperature_sensor
     above: !input maximum_temperature
+
 action:
-  - service: notify.notify
-    data:
-      message: Garage Freezer Temperature is too high
-  - service: notify.notify
+  - service: notify.mobile_app_jeremys_iphone_13 #notify.notify
     data_template:
       message: |
-        {{trigger.entity_id }} Temperature is above {{ threshold | default(0) }}.
+        {{trigger.name }} Temperature is above {{ threshold | default(0) }}.
