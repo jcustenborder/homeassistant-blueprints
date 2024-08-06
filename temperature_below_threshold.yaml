@@ -1,0 +1,38 @@
+blueprint:
+  name: Temperature below threshold
+  description: Send a notification if the temperature is below a minimum temperature.
+  domain: automation
+  input:
+    minimum_temperature:
+      name: Minimum Temperature
+      description: Minimum temperature
+      selector:
+        number:
+          min: -150
+          max: 150
+    temperature_sensor:
+      name: Temperature Sensor
+      description: Temperature sensor to monitor
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+            - device_class: temperature
+
+variables:
+  threshold: !input minimum_temperature
+
+trigger:
+  - platform: numeric_state
+    entity_id: !input temperature_sensor
+    above: !input minimum_temperature
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+
+action:
+  - service: notify.mobile_app_jeremys_iphone_13 #notify.notify
+    data_template:
+      message: |
+        {{trigger.name }} Temperature is below {{ threshold | default(0) }}.
