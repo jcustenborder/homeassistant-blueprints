@@ -26,6 +26,8 @@ trigger:
   - platform: numeric_state
     entity_id: !input temperature_sensor
     above: !input maximum_temperature
+    for:
+      minutes: 30
 
 action:
   - service: notify.mobile_app_jeremys_iphone_13 #notify.notify
